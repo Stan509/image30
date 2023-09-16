@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 style="text-align: center; color: rgb(4, 1, 47);">Modifier le patient</h2>
+    
+    <!-- Formulaire de modification de patient -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Enregistrer les modifications</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistant - Clinique Médicale du Champ de Mars (REIMAGE)</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles CSS de base */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: opacity 1s;
+        }
+
+        header {
+            background-color: #002855; /* Bleu marine */
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        /* Style pour les sections */
+        section {
+            padding: 40px;
+            text-align: center;
+            opacity: 0; /* Les sections sont initialement invisibles */
+            transition: opacity 1s;
+        }
+
+        /* Animation pour le titre "Bienvenue à notre assistant" */
+        #welcome h2 {
+            font-size: 28px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Style pour la section d'introduction du chatbot */
+        #chatbot-intro {
+            background-color: #FCD200; /* Jaune */
+            color: #002855; /* Bleu marine */
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 80%;
+        }
+
+        /* Animation pour le texte d'introduction du chatbot */
+        #chatbot-intro p {
+            font-size: 20px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Style du pied de page */
+        footer {
+            background-color: #002855;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            font-size: 16px;
+        }
+
+        /* Animation pour afficher les sections au défilement */
+        .show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo-clinique.png" alt="Logo de la clinique médicale">
+        <div class="slogan">
+            <h1>Assistant - Clinique Médicale du Champ de Mars</h1>
+            <p>Bienvenue à notre assistant virtuel</p>
+        </div>
+    </header>
+
+    <section id="welcome" class="show">
+        <h2>Bienvenue à notre assistant</h2>
+    </section>
+
+    <section id="chatbot-intro" class="show">
+        <p>Nous sommes là pour vous aider. Posez vos questions et notre chatbot spécialisé répondra à vos préoccupations concernant la clinique médicale, les rendez-vous, les services offerts, etc.</p>
+    </section>
+
+    <!-- Intégrez ici votre chatbot spécialisé ou d'autres éléments interactifs -->
+
+    <footer>
+        <p>&copy; 2023 Clinique Médicale du Champ de Mars - Ophtalmologie (REIMAGE). Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // JavaScript pour afficher les sections au défilement
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll("section");
+            window.addEventListener("scroll", function () {
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    if (sectionTop < windowHeight) {
+                        section.classList.add("show");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+{% endblock %}

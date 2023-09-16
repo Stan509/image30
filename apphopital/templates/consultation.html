@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 30%;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Ajout d'une nouvelle consultation</h2>
+        <!-- Votre formulaire va ici -->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Ajouter Consultation</button>
+        </form>
+    </div>
+
+    <div style="width: 65%; border-radius: 5px; border: 1px solid #ccc; padding: 10px;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Liste des consultations</h2>
+
+        <!-- Barre de recherche avec bouton de recherche -->
+        <form method="get" style="margin-bottom: 10px;">
+            <input type="text" class="search-input" name="search" placeholder="Rechercher par nom, prénom ou motif..." style="width: 100%; padding: 5px; border-radius: 5px; margin-bottom: 5px;">
+            <input type="date" name="date" style="width: 100%; padding: 5px; border-radius: 5px; margin-bottom: 5px;">
+            <select name="medecin" style="width: 100%; padding: 5px; border-radius: 5px; margin-bottom: 5px;">
+                <option value="">Tous les médecins</option>
+                <!-- Inclure la liste des médecins ici -->
+            </select>
+            <button class="button" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px; width: 100%;">Rechercher</button>
+        </form>
+
+        <!-- Tableau des consultations -->
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Médecin</th>
+                    <th>Date</th>
+                    <th>Motif</th>
+                    <th>avis</th>
+                    <th>Prescription</th>
+                    <th>Dosage</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for consultation in consultations %}
+                    <tr>
+                        <td>{{ consultation.patient }}</td>
+                        <td>{{ consultation.medecin }}</td>
+                        <td>{{ consultation.date }}</td>
+                        <td>{{ consultation.motif_consultation }}</td>
+                        <td>{{ consultation.avis }}</td>
+                        <td>{{ consultation.prescription }}</td>
+                        <td>{{ consultation.dosage }}</td>
+                        <td>{{ consultation.debut }}</td>
+                        <td>{{ consultation.fin }}</td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">Aucune consultation disponible.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if consultations.has_previous %}
+                    <a href="?page=1">&laquo; premier</a>
+                    <a href="?page={{ consultations.previous_page_number }}">précédent</a>
+                {% endif %}
+                
+                <span class="current-page">
+                    Page {{ consultations.number }} de {{ consultations.paginator.num_pages }}.
+                </span>
+                
+                {% if consultations.has_next %}
+                    <a href="?page={{ consultations.next_page_number }}">suivant</a>
+                    <a href="?page={{ consultations.paginator.num_pages }}">dernier &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Message popup de confirmation -->
+
+<script>
+    // Gestion du clic sur le bouton Supprimer
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    const confirmationPopup = document.getElementById('confirmation-popup');
+    const confirmDeleteButton = document.getElementById('confirm-delete');
+    const cancelDeleteButton = document.getElementById('cancel-delete');
+
+    let consultationIdToDelete = null;
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            consultationIdToDelete = e.target.getAttribute('data-consultation-id');
+            confirmationPopup.style.display = 'block';
+        });
+    });
+
+    confirmDeleteButton.addEventListener('click', () => {
+        if (consultationIdToDelete) {
+            // Redirigez vers la vue de suppression de consultation avec l'ID à supprimer
+            window.location.href = `/supprimer_consultation/${consultationIdToDelete}/`;
+        }
+    });
+
+    cancelDeleteButton.addEventListener('click', () => {
+        consultationIdToDelete = null;
+        confirmationPopup.style.display = 'none';
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 45%;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Ajout d'une nouvelle piqûre</h2>
+        <!-- Votre formulaire va ici -->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Ajouter Piqûre</button>
+        </form>
+    </div>
+
+    <div style="width: 45%; border-radius: 5px; border: 1px solid #ccc; padding: 10px;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Liste des piqûres</h2>
+
+        <!-- Tableau des piqûres -->
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for piqure in piqures %}
+                    <tr>
+                        <td>{{ piqure.patient }}</td>
+                        <td>{{ piqure.date }}</td>
+                        <td>{{ piqure.type }}</td>
+                        <td>{{ piqure.detail }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">Aucune piqûre disponible.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

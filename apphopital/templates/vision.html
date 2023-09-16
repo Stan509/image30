@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 30%;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Ajout d'une nouvelle vision</h2>
+        <!-- Votre formulaire va ici -->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Ajouter Vision</button>
+        </form>
+    </div>
+
+    <div style="width: 65%; border-radius: 5px; border: 1px solid #ccc; padding: 10px;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Liste des visions</h2>
+
+        <!-- Tableau de visions -->
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+                <tr>
+                    <th style="width: 20px;">Patient</th>
+                    <th>Date</th>
+                    <th>Cyl. OD</th>
+                    <th>Cyl. OS</th>
+                    <th>Sph. OD</th>
+                    <th>Sph. OS</th>
+                    <th>Axe OD</th>
+                    <th>Axe OS</th>
+                    <th>Tens. OD</th>
+                    <th>Tens. OS</th>
+                    <th>Vis. OD</th>
+                    <th>Vis. OS</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vision in visions %}
+                    <tr>
+                        <td>{{ vision.patient.prenom }} {{ vision.patient.nom }}</td>
+                        <td>{{ vision.date }}</td>
+                        <td>{{ vision.cylindre_od }}</td>
+                        <td>{{ vision.cylindre_os }}</td>
+                        <td>{{ vision.sphere_od }}</td>
+                        <td>{{ vision.sphere_os }}</td>
+                        <td>{{ vision.axe_od }}</td>
+                        <td>{{ vision.axe_os }}</td>
+                        <td>{{ vision.tension_od }}</td>
+                        <td>{{ vision.tension_os }}</td>
+                        <td>{{ vision.vision_od }}</td>
+                        <td>{{ vision.vision_os }}</td>
+                        <td>
+                       
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="13">Aucune vision disponible.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="display: flex; flex-direction: column; align-items: center;">
+    <!-- Logo de l'hôpital -->
+    <img src="{% static 'reimage_logo.png' %}" alt="Logo de l'hôpital" style="width: 200px; height: auto; margin-bottom: 10px;">
+
+    <h2 style="text-align: center; color: rgb(4, 1, 47); margin-bottom: 10px;">Connexion à l'administration de l'hôpital</h2>
+
+    <!-- Affichage des messages d'erreur ou de succès -->
+    {% for message in messages %}
+    <p style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">{{ message }}</p>
+    {% endfor %}
+
+    <form method="post" style="text-align: left; padding: 10px;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px; margin-top: 20px;">Se Connecter</button>
+    </form>
+</div>
+{% endblock %}

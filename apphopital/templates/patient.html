@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 45%;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Ajout de nouveau patient</h2>
+        <!-- Votre formulaire va ici -->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Ajouter Patient</button>
+        </form>
+    </div>
+
+    <div style="width: 45%; border-radius: 5px; border: 1px solid #ccc; padding: 10px;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Liste des patients</h2>
+
+        <!-- Barre de recherche avec bouton de recherche -->
+        <form method="get" style="margin-bottom: 10px;">
+            <input type="text" class="search-input" name="search" placeholder="Rechercher par nom ou prénom..." style="width: 100%; padding: 5px; border-radius: 5px; margin-bottom: 5px;">
+            <select name="gender" style="width: 100%; padding: 5px; border-radius: 5px; margin-bottom: 5px;">
+                <option value="">Tous les sexes</option>
+                <option value="homme">Masculin</option>
+                <option value="femme">Féminin</option>
+            </select>
+            <input type="date" name="birthdate" style="width: 100%; padding: 5px; border-radius: 5px; margin-bottom: 5px;">
+            <button class="button" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px; width: 100%;">Rechercher</button>
+        </form>
+
+        <!-- Tableau de patients -->
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Sexe</th>
+                    <th>No Dossier</th>
+                    <th>Naissance</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                    <tr>
+                        <td>{{ patient.nom }}</td>
+                        <td>{{ patient.prenom }}</td>
+                        <td>{{ patient.sexe }}</td>
+                        <td>{{ patient.numero_dossier }}</td>
+                        <td>{{ patient.date_de_naissance }}</td>
+                        <td>
+                            <a href="{% url 'modifier_patient' patient.id %}" class="button" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Modifier</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">Aucun patient disponible.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if patients.has_previous %}
+                    <a href="?page=1">&laquo; premier</a>
+                    <a href="?page={{ patients.previous_page_number }}">précédent</a>
+                {% endif %}
+                
+                <span class="current-page">
+                    Page {{ patients.number }} de {{ patients.paginator.num_pages }}.
+                </span>
+                
+                {% if patients.has_next %}
+                    <a href="?page={{ patients.next_page_number }}">suivant</a>
+                    <a href="?page={{ patients.paginator.num_pages }}">dernier &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</div>
+{% endblock %}

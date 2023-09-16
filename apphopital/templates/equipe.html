@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Équipe Médicale</title>
+    
+    <!-- Liens vers Bootstrap CSS (utilisation depuis un CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Liens vers vos fichiers CSS personnalisés -->
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+
+    <!-- Liens vers vos fichiers JavaScript -->
+    <script src="{% static '/scripts.js' %}"></script>
+
+    <style>
+        /* Styles CSS personnalisés */
+        body {
+            opacity: 0;
+            transition: opacity 1s;
+            background-color: #f2f2f2; /* Couleur de fond gris clair */
+            overflow: hidden; /* Masquer la barre de défilement verticale */
+        }
+
+        /* Style pour la section de l'équipe médicale */
+        .team-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Permet à la section de s'adapter à l'écran */
+            padding: 20px;
+        }
+
+        .team-member {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 10px;
+            width: 300px;
+            max-width: 90%;
+            opacity: 0; /* Commencez avec une opacité de 0 pour les animations */
+            animation: fadeIn ease-in-out 1; /* Animation de fondu */
+            animation-fill-mode: forwards;
+        }
+
+        .team-member img {
+            max-width: 100%;
+            border-radius: 50%;
+        }
+
+        /* Ajoutez d'autres styles au besoin */
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* Animation de fondu */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="team-section">
+    <div class="team-member" style="animation-delay: 0s;">
+        <img src="chemin_vers_image_docteur.jpg" alt="Nom du Docteur">
+        <h3>Nom du Docteur</h3>
+        <p>Spécialité du Docteur</p>
+    </div>
+    <div class="team-member" style="animation-delay: 2s;">
+        <img src="chemin_vers_image_infirmiere.jpg" alt="Nom de l'Infirmière">
+        <h3>Nom de l'Infirmière</h3>
+        <p>Spécialité de l'Infirmière</p>
+    </div>
+    <div class="team-member" style="animation-delay: 4s;">
+        <img src="chemin_vers_image_autre_membre.jpg" alt="Nom de l'Autre Membre">
+        <h3>Nom de l'Autre Membre</h3>
+        <p>Spécialité de l'Autre Membre</p>
+    </div>
+    <div class="team-member" style="animation-delay: 0s;">
+        <img src="chemin_vers_image_docteur.jpg" alt="Nom du Docteur">
+        <h3>Nom du Docteur</h3>
+        <p>Spécialité du Docteur</p>
+    </div>
+    <div class="team-member" style="animation-delay: 2s;">
+        <img src="chemin_vers_image_infirmiere.jpg" alt="Nom de l'Infirmière">
+        <h3>Nom de l'Infirmière</h3>
+        <p>Spécialité de l'Infirmière</p>
+    </div>
+    <div class="team-member" style="animation-delay: 4s;">
+        <img src="chemin_vers_image_autre_membre.jpg" alt="Nom de l'Autre Membre">
+        <h3>Nom de l'Autre Membre</h3>
+        <p>Spécialité de l'Autre Membre</p>
+    </div>
+    <div class="team-member" style="animation-delay: 0s;">
+        <img src="chemin_vers_image_docteur.jpg" alt="Nom du Docteur">
+        <h3>Nom du Docteur</h3>
+        <p>Spécialité du Docteur</p>
+    </div>
+    <div class="team-member" style="animation-delay: 2s;">
+        <img src="chemin_vers_image_infirmiere.jpg" alt="Nom de l'Infirmière">
+        <h3>Nom de l'Infirmière</h3>
+        <p>Spécialité de l'Infirmière</p>
+    </div>
+    <div class="team-member" style="animation-delay: 4s;">
+        <img src="chemin_vers_image_autre_membre.jpg" alt="Nom de l'Autre Membre">
+        <h3>Nom de l'Autre Membre</h3>
+        <p>Spécialité de l'Autre Membre</p>
+    </div>
+    <div class="team-member" style="animation-delay: 0s;">
+        <img src="chemin_vers_image_docteur.jpg" alt="Nom du Docteur">
+        <h3>Nom du Docteur</h3>
+        <p>Spécialité du Docteur</p>
+    </div>
+    <div class="team-member" style="animation-delay: 2s;">
+        <img src="chemin_vers_image_infirmiere.jpg" alt="Nom de l'Infirmière">
+        <h3>Nom de l'Infirmière</h3>
+        <p>Spécialité de l'Infirmière</p>
+    </div>
+    <div class="team-member" style="animation-delay: 4s;">
+        <img src="chemin_vers_image_autre_membre.jpg" alt="Nom de l'Autre Membre">
+        <h3>Nom de l'Autre Membre</h3>
+        <p>Spécialité de l'Autre Membre</p>
+    </div>
+    <!-- Ajoutez d'autres membres de l'équipe médicale ici -->
+</div>
+
+<footer>
+    © 2023 Votre Site Web. Tous droits réservés.
+</footer>
+
+<!-- Liens vers Bootstrap JavaScript (utilisation depuis un CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.min.js"></script>
+
+<script>
+    // JavaScript pour ajouter des animations de fondu
+    document.addEventListener("DOMContentLoaded", function () {
+        const body = document.body;
+        body.style.opacity = "1"; // Rétablit l'opacité du corps à 1 après le chargement
+    });
+</script>
+</body>
+</html>
+
+
+{% endblock %}

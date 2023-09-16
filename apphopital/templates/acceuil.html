@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinique Médicale du Champ de Mars - Ophtalmologie (REIMAGE)</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        /* Styles CSS de base */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: opacity 1s;
+        }
+
+        header {
+            background-color: #002855; /* Bleu marine */
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        /* Conteneur pour les sections côte à côte */
+        .sections-container {
+            display: flex;
+            flex-wrap: wrap; /* Permet le passage à la ligne automatique */
+            justify-content: space-between; /* Espacement égal entre les sections */
+            margin: 20px; /* Marge extérieure pour l'espacement */
+        }
+
+        /* Style pour chaque section */
+        .section {
+            flex: 1; /* Chaque section occupe une part égale de l'espace disponible */
+            padding: 20px;
+            text-align: center;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animation pour le titre "À propos de nous" */
+        .section h2 {
+            font-size: 28px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Animation pour la liste des services */
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .section li {
+            font-size: 20px;
+            margin-bottom: 10px;
+            animation: slideIn 1s ease-in-out;
+        }
+        .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Pour s'assurer que le navbar est au-dessus du reste du contenu */
+    background-color: #002855;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+        @keyframes slideIn {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Animation pour l'horaire */
+        .section p {
+            font-size: 24px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Animation pour les informations de contact */
+        .section p {
+            font-size: 20px;
+            animation: bounceIn 1s ease-in-out;
+        }
+
+        @keyframes bounceIn {
+            from, 20%, 40%, 60%, 80%, to {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-30px);
+            }
+
+            40%, 60% {
+                transform: translateX(30px);
+            }
+
+            80% {
+                transform: translateX(-15px);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Style du pied de page */
+        footer {
+            background-color: #002855;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            font-size: 16px;
+        }
+
+        /* Animation pour afficher les sections au défilement */
+        .show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        
+        <div class="slogan">
+            <h1>La meilleure clinique ophtalmologique au Champ de Mars</h1><br>
+            <img src="{% static 'acceuil.gif' %}" width="150">
+            <p>Nous avons les meilleurs spécialistes en ophtalmologie depuis plus de 30 ans</p>
+        </div>
+    </header>
+
+    <!-- Conteneur pour les sections côte à côte -->
+    <div class="sections-container">
+        <!-- Section À propos -->
+        <section class="section show" id="about">
+            <h2>À propos</h2>
+            <p>Nous sommes fiers de vous offrir des services médicaux de haute qualité depuis plus de 30 ans. Notre clinique est spécialisée en ophtalmologie et dispose des meilleurs spécialistes de tout Haïti. Chez REIMAGE, nous mettons à votre disposition les meilleurs outils de travail pour assurer des soins optimaux.</p>
+        </section>
+
+        <!-- Section Services -->
+        <section class="section show" id="services">
+            <h2>Nos Services</h2>
+            <ul>
+                <li>Examens oculaires complets</li>
+                <li>Chirurgie de la cataracte</li>
+                <li>Correction de la vision au laser</li>
+                <li>Soins post-opératoires</li>
+            </ul>
+        </section>
+
+        <!-- Section Horaires d'ouverture -->
+        <section class="section show" id="schedule">
+            <h2>Horaires d'ouverture</h2>
+            <p>Lundi : 7h00 - 21h00</p>
+            <p>Mardi : 7h00 - 21h00</p>
+            <p>Mercredi : 7h00 - 21h00</p>
+            <p>Jeudi : 7h00 - 21h00</p>
+            <p>Vendredi : 7h00 - 21h00</p>
+            <p>Samedi : 7h00 - 21h00</p>
+        </section>
+
+        <!-- Section Contactez-nous -->
+        <section class="section show" id="contact">
+            <h2>Contactez-nous</h2>
+            <p>Adresse : 30, Rue Piquant, Champ de Mars, Port-au-Prince, HAITI</p>
+            <p>Téléphone : +509 2816 9925</p>
+            <p>Téléphone : +509 3774 0323</p>
+            <p>Email : cliniquemedical@gmail.com.com</p>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript pour afficher les sections au défilement
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll(".section");
+            window.addEventListener("scroll", function () {
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    if (sectionTop < windowHeight) {
+                        section.classList.add("show");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+{% endblock %}

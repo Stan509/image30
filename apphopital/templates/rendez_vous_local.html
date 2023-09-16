@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 45%;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Ajout d'un nouveau rendez-vous local</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Ajouter Rendez-vous Local</button>
+        </form>
+    </div>
+
+    <div style="width: 45%; border-radius: 5px; border: 1px solid #ccc; padding: 10px;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Liste des rendez-vous locaux</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Téléphone</th>
+                    <th>Objet</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rendez_vous in rendez_vous %}
+                    <tr>
+                        <td>{{ rendez_vous.nom }}</td>
+                        <td>{{ rendez_vous.prenom }}</td>
+                        <td>{{ rendez_vous.telephone }}</td>
+                        <td>{{ rendez_vous.get_objet_display }}</td>
+                        <td>{{ rendez_vous.date }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">Aucun rendez-vous local disponible.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 45%;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Ajout d'une nouvelle intervention au laser</h2>
+        <!-- Votre formulaire va ici -->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Ajouter Intervention Laser</button>
+        </form>
+    </div>
+
+    <div style="width: 45%; border-radius: 5px; border: 1px solid #ccc; padding: 10px;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Liste des interventions au laser</h2>
+
+        <!-- Tableau des interventions au laser -->
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Médecin</th>
+                    <th>Date</th>
+                    <th>Information</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for laser in lasers %}
+                    <tr>
+                        <td>{{ laser.patient }}</td>
+                        <td>{{ laser.medecin }}</td>
+                        <td>{{ laser.date }}</td>
+                        <td>{{ laser.information }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">Aucune intervention au laser disponible.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

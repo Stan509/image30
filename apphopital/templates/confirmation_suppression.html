@@ -1,0 +1,12 @@
+<!-- confirmation_suppression.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Confirmation de suppression</h2>
+    <p>Êtes-vous sûr de vouloir supprimer le patient {{ patient.nom }} {{ patient.prenom }} en attente ?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" style="background-color: #ff0000; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Oui, Supprimer</button>
+        <a href="{% url 'attente_view' %}" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Annuler</a>
+    </form>
+{% endblock %}

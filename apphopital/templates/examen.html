@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 45%;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Ajout d'un nouvel examen médical</h2>
+        <!-- Votre formulaire va ici -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Ajouter Examen Médical</button>
+        </form>
+    </div>
+
+    <div style="width: 45%; border-radius: 5px; border: 1px solid #ccc; padding: 10px;">
+        <h2 style="text-align: center; color: rgb(4, 1, 47);">Liste des examens médicaux</h2>
+
+        <!-- Barre de recherche avec bouton de recherche -->
+        <form method="get" style="margin-bottom: 10px;">
+            <input type="text" class="search-input" name="search" placeholder="Rechercher par nom ou date..." style="width: 100%; padding: 5px; border-radius: 5px; margin-bottom: 5px;">
+            <button class="button" style="background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px; padding: 5px 10px; width: 100%;">Rechercher</button>
+        </form>
+
+        <!-- Tableau des examens médicaux -->
+        <!-- Tableau des examens médicaux -->
+<table style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>Nom du patient</th>
+            <th>Date</th>
+            <th>Nom de l'examen</th>
+            <th>Résultat</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for examen in examens %}
+            <tr>
+                <td>{{ examen.patient }}</td>
+                <td>{{ examen.date }}</td>
+                <td>{{ examen.nom_examen }}</td>
+                <td>{{ examen.resultat }}</td>
+                <td>
+                    {% if examen.resultat %}
+                    <a href="{% url 'lecteur_view' %}?media_url={{ examen.resultat.url }}" target="_blank">Voir</a>
+
+
+
+                    {% else %}
+                        Aucun résultat
+                    {% endif %}
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">Aucun examen médical disponible.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    </div>
+</div>
+{% endblock %}

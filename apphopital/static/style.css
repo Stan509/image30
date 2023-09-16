@@ -1,0 +1,165 @@
+/* Styling for the whole page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d9d4d4c2;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    text-align: center;
+    color: #007BFF; /* Blue color */
+    padding: 20px 0;
+}
+
+/* Center the title */
+.CRUD {
+    text-align: center;
+    color: #007BFF; /* Blue color */
+    padding: 20px 0;
+}
+
+/* Style the left column (form) */
+.left-column {
+    width: 48%; /* Ajout d'un peu d'espace entre les colonnes */
+    padding: 50px;
+    box-sizing: border-box;
+    float: left; /* Float the left column to the left */
+    background-color: #fff; /* Couleur de fond pour le formulaire */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 1%;
+    align-items: center; /* Espacement entre les colonnes */
+}
+
+/* Style the right column (table) */
+.right-column {
+    width: 48%; /* Ajout d'un peu d'espace entre les colonnes */
+    padding: 50px;
+    box-sizing: border-box;
+    float: right; /* Float the right column to the left */
+    background-color: #fff; /* Couleur de fond pour la table */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    -ms-flex-align: center;
+}
+
+/* Style the form */
+form {
+    padding: 60px;
+}
+
+/* Style the form labels and inputs */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #007BFF; /* Couleur bleue pour les titres */
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+/* Style the placeholder text */
+::placeholder {
+    color: #1b1a1a;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Style the table */
+table {
+    width: 50%;
+    border-collapse: collapse;
+    padding: 60px;
+       
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+/* Style the table header */
+thead {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* Style the table rows */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style the action buttons */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-button, .delete-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button:hover, .delete-button:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Style the footer */
+/* Styling du bouton de recherche */
+#search-button {
+    background-color: #007bff; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Supprime la bordure */
+    border-radius: 4px; /* Coins arrondis */
+    padding: 8px 16px; /* Rembourrage intérieur */
+    cursor: pointer; /* Curseur pointeur au survol */
+}
+
+/* Styling du bouton de modification */
+.edit-button {
+    background-color: #28a745; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Supprime la bordure */
+    border-radius: 4px; /* Coins arrondis */
+    padding: 8px 16px; /* Rembourrage intérieur */
+    cursor: pointer; /* Curseur pointeur au survol */
+}
+
+/* Styling du bouton de suppression */
+.delete-button {
+    background-color: #dc3545; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Supprime la bordure */
+    border-radius: 4px; /* Coins arrondis */
+    padding: 8px 16px; /* Rembourrage intérieur */
+    cursor: pointer; /* Curseur pointeur au survol */
+}
+

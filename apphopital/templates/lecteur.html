@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="text-align: center;">
+    {% if media_type == 'image' %}
+        <img src="{{ media_url }}" alt="Image">
+    {% elif media_type == 'video' %}
+        <video controls>
+            <source src="{{ media_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    {% endif %}
+</div>
+{% endblock %}

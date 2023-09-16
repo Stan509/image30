@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos - Clinique Médicale du Champ de Mars (REIMAGE)</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles CSS de base */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: opacity 1s;
+        }
+
+        header {
+            background-color: #002855; /* Bleu marine */
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        /* Style pour la section "À Propos" */
+        section {
+            padding: 40px;
+            text-align: center;
+            opacity: 0; /* La section est initialement invisible */
+            transition: opacity 1s;
+        }
+
+        /* Animation pour le titre "À Propos de notre clinique" */
+        #about h2 {
+            font-size: 28px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Style du pied de page */
+        footer {
+            background-color: #002855;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            font-size: 16px;
+        }
+
+        /* Animation pour afficher la section au défilement */
+        .show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo-clinique.png" alt="Logo de la clinique médicale">
+        <div class="slogan">
+            <h1>À Propos - Clinique Médicale du Champ de Mars</h1>
+        </div>
+    </header>
+
+    <section id="about" class="show">
+        <h2>À Propos de notre clinique</h2>
+        <p>Nous sommes fiers de vous offrir des services médicaux de haute qualité depuis plus de 30 ans. Notre clinique est spécialisée en ophtalmologie et dispose des meilleurs spécialistes de tout Haïti. Chez REIMAGE, nous mettons à votre disposition les meilleurs outils de travail pour assurer des soins optimaux.</p>
+    </section>
+
+    <!-- Intégrez ici plus d'informations sur la clinique et son équipe -->
+
+    <footer>
+        <p>&copy; 2023 Clinique Médicale du Champ de Mars - Ophtalmologie (REIMAGE). Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // JavaScript pour afficher la section au défilement
+        document.addEventListener("DOMContentLoaded", function () {
+            const section = document.querySelector("section");
+            window.addEventListener("scroll", function () {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight) {
+                    section.classList.add("show");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+{% endblock %}

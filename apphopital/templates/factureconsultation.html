@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une Facture de Consultation</title>
+    <style>
+        /* Styles pour le popup */
+
+        /* Styles pour le popup */
+.popup {
+    /* ... Autres styles ... */
+    scrollbar-width: thin; /* Pour Firefox */
+    scrollbar-color: transparent transparent; /* Pour Firefox */
+}
+
+/* Personnalisation de la barre de défilement pour Webkit (Google Chrome) */
+.popup::-webkit-scrollbar {
+    width: 6px; /* Largeur de la barre de défilement */
+}
+
+.popup::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Couleur de la poignée de la barre de défilement */
+}
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #c4e5f4;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            max-height: 70vh; /* Hauteur maximale du popup */
+            overflow-y: auto; /* Ajout de la barre de défilement verticale si le contenu dépasse la hauteur du popup */
+            z-index: 1000; /* Pour s'assurer que la fenêtre modale est au-dessus de tout le reste */
+        }
+
+        .fermer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        h1 {
+            text-align: center;
+            color: #05023f;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup" id="popup">
+        <span class="fermer" id="fermerPopup">&times;</span>
+        <h2>Formulaire d'ajout de Facture de Consultation</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Ajouter">
+        </form>
+    </div>
+    
+    <h1>Ajouter une Facture de Consultation</h1><br>
+<div class="container" style="padding: 10px;-ms-grid-column-align: center; ">
+    <button id="ouvrirPopup">Ajouter</button><br><br><br>
+</div>
+    <table style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Quantité</th>
+                <th>Montant payé</th>
+                <th>Total</th>
+                <th>Spécial</th>
+                <th>Mode de paiement</th>
+                <th>Prix</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for facture in factures_consultation %}
+            <tr>
+                <td>{{ facture.date }}</td>
+                <td>{{ facture.nom_patient }}</td>
+                <td>{{ facture.prenom_patient }}</td>
+                <td>{{ facture.quantite }}</td>
+                <td>{{ facture.montant_paye }}</td>
+                <td>{{ facture.total }}</td>
+                <td>{{ facture.special }}</td>
+                <td>{{ facture.mode_paiement }}</td>
+                <td>{{ facture.prix }}</td>
+                <td>Action</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">Aucune facture de consultation enregistrée.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <script>
+        // Ouvrir le popup
+        document.getElementById("ouvrirPopup").addEventListener("click", function() {
+            document.getElementById("popup").style.display = "block";
+        });
+
+        // Fermer le popup en cliquant sur la croix
+        document.getElementById("fermerPopup").addEventListener("click", function() {
+            document.getElementById("popup").style.display = "none";
+        });
+    </script>
+</body>
+</html>
+
+

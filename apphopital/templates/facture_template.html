@@ -1,0 +1,31 @@
+<!-- templates/facture_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Facture</title>
+    <!-- Styles CSS pour formater la facture -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/facture.css' %}">
+</head>
+<body>
+    <header>
+        <!-- Votre en-tête de facture -->
+    </header>
+    <main>
+        <h1>Facture n°{{ facture.numero_facture }}</h1>
+        <p>Caissière: {{ facture.caissiere }}</p>
+        <p>Nom du Patient: {{ facture.nom_patient }}</p>
+        <p>Nom de l'Examen: {{ facture.nom_examen }}</p>
+        <p>Prix de l'Examen: {{ facture.prix_examen }}</p>
+        <p>Réduction: {{ facture.reduction }}</p>
+        <p>Quantité: {{ facture.quantite }}</p>
+        <p>Montant Total: {{ facture.montant_total }}</p>
+        <p>Montant Payé: {{ facture.montant_paye }}</p>
+        <p>Montant Remis: {{ facture.montant_remis }}</p>
+        <p>Reste à Payer: {{ facture.reste_a_payer }}</p>
+        <!-- Ajoutez ici d'autres détails de la facture si nécessaire -->
+    </main>
+    <footer>
+        <!-- Votre pied de page de facture -->
+    </footer>
+</body>
+</html>
